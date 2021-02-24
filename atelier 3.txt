@@ -99,11 +99,8 @@ CREATE INDEX INDEX_WAREHOUSE ON Boxes (warehouse);
 
 3.17
 
-SHOW INDEX FROM Boxes FROM mydb;
-SHOW INDEX FROM mydb.Boxes;
 
-
-SELECT * FROM SQLITE_MASTER WHERE type = "index";
+SHOW INDEX FROM Boxes;
 
 
 
