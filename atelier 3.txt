@@ -1,0 +1,109 @@
+
+
+3.1  select * from warehouses;
+
+
+3.2  select * from boxes where Value>150;
+
+
+3.3  select distinct contents from boxes;
+
+
+3.4  select avg(value) from boxes;
+
+
+
+3.5  select warehouse, avg(value) from boxes group by warehouse;
+
+
+
+3.6  select warehouse, avg(value) 
+from boxes 
+group by warehouse
+having avg(value)> 150;
+
+
+
+3.7 select boxes.code, warehouses.location
+from boxes join warehouses
+on boxes.Warehouse = Warehouses.Code;
+
+SELECT Boxes.Code, Location
+      FROM Warehouses 
+INNER JOIN Boxes ON Warehouses.Code = Boxes.Warehouse;
+
+
+3.8   select Warehouse, count(*) 
+from boxes 
+group by warehouse;
+
+
+3.9
+SELECT Code
+   FROM Warehouses
+   WHERE Capacity <
+   (
+     SELECT COUNT(*)
+       FROM Boxes
+       WHERE Warehouse = Warehouses.Code
+   );
+
+
+
+3.10  
+ 
+ SELECT Code
+   FROM Boxes
+   WHERE Warehouse IN
+   (
+     SELECT Code
+       FROM Warehouses
+       WHERE Location = 'Chicago'
+   );
+
+
+3.11  INSERT INTO Warehouses VALUES (6, 'New York', 3);
+
+
+3.12 INSERT INTO Boxes VALUES('H5RT', 'Papers', 200, 2);
+
+
+3.13  update boxes
+set value = value * 0.85;
+
+
+
+3.14   delete from boxes 
+where value < 100;
+
+
+3.15   delete from boxes
+where warehouse in
+(
+SELECT Code
+   FROM Warehouses
+   WHERE Capacity <
+   (
+     SELECT COUNT(*)
+       FROM Boxes
+       WHERE Warehouse = Warehouses.Code
+   )
+);
+
+
+
+3.16
+CREATE INDEX INDEX_WAREHOUSE ON Boxes (warehouse);
+
+
+
+3.17
+
+SHOW INDEX FROM Boxes FROM mydb;
+SHOW INDEX FROM mydb.Boxes;
+
+
+SELECT * FROM SQLITE_MASTER WHERE type = "index";
+
+
+
