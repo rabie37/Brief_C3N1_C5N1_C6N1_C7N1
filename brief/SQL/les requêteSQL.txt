@@ -1,42 +1,29 @@
-CREATE TABLE Users(
- UserId  int NOT NULL ,
- nom varchar(45) NOT NULL ,
-prenom varchar(54) NOT NULL ,
-email   varchar(45) NOT NULL ,
-password text NOT NULL ,
-ALTER TABLE `users` ADD UNIQUE(`Email`);
-
-PRIMARY KEY (`UserId`)
+  
+CREATE DATABASE wedev;
+create table users(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  nom varchar(255) NOT NULL ,
+  prenom varchar(255) NOT NULL ,
+  mail varchar(255) NOT NULL UNIQUE ,
+  password  varchar(255) NOT NULL 
 );
 
-
-
-
-ALTER TABLE `users` CHANGE `Email` `nom` VARCHAR(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `Password` `prenom` VARCHAR(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `FirstName` `email` VARCHAR(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `LastName` `password` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
-
-CREATE TABLE `Formations`
-(
- `FormationId`  int NOT NULL ,
- `UserId`       int NOT NULL ,
- `TechnoTarget` varchar(45) NOT NULL ,
- `Date`         datetime NOT NULL ,
-
-PRIMARY KEY (`FormationId`),
-KEY `fkIdx_30` (`UserId`),
-CONSTRAINT `FK_29` FOREIGN KEY `fkIdx_30` (`UserId`) REFERENCES `Users` (`UserId`)
+Create table technos (
+  
+   id INTEGER not null,
+   Foreign Key(id) references users ( id),
+   html INTEGER, 
+   cgi  INTEGER,
+   js  INTEGER ,
+   ajax INTEGER ,
+   php INTEGER
+  
 );
-
-CREATE TABLE `Technos`
-(
- `TechnoId`   int NOT NULL ,
- `UserId`     int NOT NULL ,
- `Html`       int NOT NULL ,
- `PHP`        int NOT NULL ,
- `Javascript` int NOT NULL ,
- `Cgi`        int NOT NULL ,
- `Ajax`       int NOT NULL ,
-
-PRIMARY KEY (`TechnoId`),
-KEY `fkIdx_13` (`UserId`),
-CONSTRAINT `FK_12` FOREIGN KEY `fkIdx_13` (`UserId`) REFERENCES `Users` (`UserId`)
+	
+create table formations (
+  
+  id INTEGER not null,
+ Foreign Key(id) references users ( id),
+  techno varchar(255),
+  date DATE 
 );
